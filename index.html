@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archimedes Aritao - Curriculum Vitae</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+    :root {
+      --bg: #06080d;
+      --panel: #0e1219;
+      --panel-soft: #141a24;
+      --line: #232d3d;
+      --text: #dfe9f7;
+      --muted: #94a5c0;
+      --green: #3df28a;
+      --green-soft: rgba(61, 242, 138, 0.12);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(61, 242, 138, 0.22), transparent 24%),
+        radial-gradient(circle at 88% 78%, rgba(86, 129, 255, 0.18), transparent 30%),
+        linear-gradient(140deg, #05070b 0%, #090d14 35%, #0a0f17 100%);
+      min-height: 100vh;
+      line-height: 1.45;
+      animation: pageIn 600ms ease;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 22px auto 26px;
+      padding: 0 16px;
+    }
+
+    .stage {
+      position: relative;
+      perspective: 1300px;
+    }
+
+    .mock-card {
+      position: absolute;
+      width: 230px;
+      min-height: 130px;
+      border: 1px solid #263349;
+      border-radius: 14px;
+      background: linear-gradient(165deg, rgba(17, 24, 36, 0.9), rgba(12, 17, 26, 0.9));
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.45);
+      padding: 12px;
+      z-index: 1;
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+    }
+
+    .mock-card h4 {
+      margin: 0;
+      font-size: 13px;
+      color: #dce7f9;
+    }
+
+    .mock-card p {
+      margin: 6px 0 0;
+      font-size: 11px;
+      color: #8da1c2;
+    }
+
+    .mock-left {
+      left: -92px;
+      top: 110px;
+      transform: rotate(-16deg);
+    }
+
+    .mock-right {
+      right: -88px;
+      top: 290px;
+      transform: rotate(14deg);
+    }
+
+    .mock-bottom-left {
+      left: -84px;
+      top: 590px;
+      transform: rotate(-10deg);
+      width: 240px;
+    }
+
+    .mock-bottom-right {
+      right: -92px;
+      top: 710px;
+      transform: rotate(11deg);
+      width: 270px;
+      min-height: 150px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      border: 1px solid #2f3b50;
+      color: var(--text);
+      font-weight: 700;
+      background: linear-gradient(130deg, #1a2130, #111722);
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: #51627d;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+    }
+
+    .cv {
+      border: 1px solid #1f2633;
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, rgba(16, 22, 33, 0.84), rgba(9, 13, 20, 0.92)),
+        #0b1018;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      transform: rotateX(2deg) rotateY(-5deg);
+      transform-style: preserve-3d;
+      transition: transform 250ms ease;
+      z-index: 2;
+    }
+
+    .stage:hover .cv {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    .cv::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(61, 242, 138, 0.03), transparent 34%);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 305px 1fr;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: revealUp 600ms ease both;
+    }
+
+    .right-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #101723, #0d131d);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      animation: revealUp 640ms ease both;
+    }
+
+    .profile {
+      text-align: center;
+      padding-top: 18px;
+    }
+
+    .avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 20px;
+      margin: 0 auto 12px;
+      border: 1px solid #2c384d;
+      background: #0d131d;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .name {
+      font-family: "Space Grotesk", sans-serif;
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+
+    .title {
+      margin: 8px 0 0;
+      font-size: 13px;
+      color: #b7c8e3;
+      line-height: 1.35;
+    }
+
+    .tagline {
+      margin: 10px auto 0;
+      font-size: 12px;
+      color: var(--green);
+      background: var(--green-soft);
+      border: 1px solid rgba(61, 242, 138, 0.35);
+      border-radius: 999px;
+      padding: 5px 10px;
+      width: fit-content;
+    }
+
+    .quick {
+      margin-top: 14px;
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .quick .row {
+      border: 1px solid #263044;
+      border-radius: 10px;
+      padding: 8px 9px;
+      font-size: 12px;
+      color: #b7c4da;
+      background: #101724;
+    }
+
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .numbers div {
+      border: 1px solid #243245;
+      border-radius: 10px;
+      padding: 8px 6px;
+      text-align: center;
+      background: #0f1724;
+    }
+
+    .numbers strong {
+      display: block;
+      color: #eff6ff;
+      font-size: 16px;
+    }
+
+    .numbers span {
+      color: #8ea0bd;
+      font-size: 11px;
+    }
+
+    .sec-title {
+      margin: 0 0 10px;
+      color: #cad7ed;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .sec-title::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(61, 242, 138, 0.7);
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .hero-card h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 29px;
+      line-height: 1.15;
+    }
+
+    .hero-card h2 span {
+      color: var(--green);
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "Resume";
+      position: absolute;
+      right: -10px;
+      bottom: -8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 72px;
+      letter-spacing: 1px;
+      color: rgba(61, 242, 138, 0.13);
+      pointer-events: none;
+    }
+
+    .chips {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 12px;
+      color: #b6c7e1;
+      border: 1px solid #2b384c;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: #0f1622;
+    }
+
+    .exp-item {
+      border: 1px solid #263246;
+      border-radius: 11px;
+      padding: 10px;
+      background: #0f1724;
+    }
+
+    .exp-item + .exp-item {
+      margin-top: 9px;
+    }
+
+    .exp-item .head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .exp-item .role {
+      font-size: 13px;
+      font-weight: 700;
+      color: #e2ebfa;
+    }
+
+    .exp-item .year {
+      font-size: 11px;
+      color: #7e90ad;
+      border: 1px solid #30425d;
+      border-radius: 999px;
+      padding: 3px 7px;
+    }
+
+    ul {
+      margin: 7px 0 0 16px;
+      padding: 0;
+    }
+
+    li {
+      color: #b5c3da;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .project {
+      border: 1px solid #283550;
+      border-radius: 11px;
+      padding: 11px;
+      background: linear-gradient(150deg, #111b2a, #0f1520);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .project:hover {
+      transform: translateY(-2px);
+      border-color: #456086;
+    }
+
+    .project h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      color: #e8f0ff;
+    }
+
+    .project p {
+      margin: 0;
+      color: #91a4c2;
+      font-size: 12px;
+    }
+
+    .project-link {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green);
+      text-decoration: none;
+      border: 1px solid rgba(61, 242, 138, 0.45);
+      background: rgba(61, 242, 138, 0.08);
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .project-link:hover {
+      transform: translateY(-1px);
+      background: rgba(61, 242, 138, 0.14);
+    }
+
+    .edu-list,
+    .cert-list,
+    .contact-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .pill {
+      border: 1px solid #2b364a;
+      border-radius: 10px;
+      background: #101824;
+      padding: 8px 9px;
+      color: #bdcbdf;
+      font-size: 12px;
+    }
+
+    .stagger-1 { animation-delay: 60ms; }
+    .stagger-2 { animation-delay: 120ms; }
+    .stagger-3 { animation-delay: 180ms; }
+    .stagger-4 { animation-delay: 240ms; }
+
+    @keyframes revealUp {
+      from {
+        transform: translateY(14px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 980px) {
+      .mock-card {
+        display: none;
+      }
+
+      .cv {
+        transform: none;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #0a0f17;
+      }
+
+      .mock-card {
+        display: none;
+      }
+
+      .wrap {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .toolbar {
+        display: none;
+      }
+
+      .cv {
+        border: 0;
+        border-radius: 0;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="toolbar">
+      <button class="btn" onclick="window.open('/Archimedes_Aritao_CV.pdf','_blank')">Print / Save PDF</button>
+    </div>
+
+    <div class="stage">
+      <div class="mock-card mock-left">
+        <h4>Ecopark Reservation</h4>
+        <p>Online booking workflow, calendar, and admin approvals.</p>
+      </div>
+      <div class="mock-card mock-right">
+        <h4>Receipt Management</h4>
+        <p>Tracking, searchable transaction records, and printable receipts.</p>
+      </div>
+      <div class="mock-card mock-bottom-left">
+        <h4>Public Information Hub</h4>
+        <p>Centralized updates, office pages, and downloadable documents.</p>
+      </div>
+      <div class="mock-card mock-bottom-right">
+        <h4>Budget Monitoring</h4>
+        <p>Digital tracking dashboard for reports, allocations, and finance logs.</p>
+      </div>
+
+    <article class="cv">
+      <div class="layout">
+        <aside class="left-col">
+          <section class="card profile stagger-1">
+            <div class="avatar">
+              <img src="/images/cv_profile/image1.jpeg" alt="Archimedes Aritao" />
+            </div>
+            <h1 class="name">ARCHIMEDES F. ARITAO</h1>
+            <p class="title">Information Technology Officer<br />Full Stack PHP Web Developer</p>
+            <p class="tagline">Available for IT Projects</p>
+
+            <div class="quick">
+              <div class="row">Email: archimedesaritao@gmail.com</div>
+              <div class="row">Phone: 0995-751-2509</div>
+              <div class="row">Pangil, Laguna</div>
+              <div class="row">Born: January 22, 1986</div>
+            </div>
+
+            <div class="numbers">
+              <div>
+                <strong>15+</strong>
+                <span>Years Exp</span>
+              </div>
+              <div>
+                <strong>8+</strong>
+                <span>Systems</span>
+              </div>
+              <div>
+                <strong>3</strong>
+                <span>Major Web Apps</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card stagger-2">
+            <h2 class="sec-title">Education</h2>
+            <div class="edu-list">
+              <div class="pill">BS Information Technology<br />STI College Sta. Cruz, Laguna<br />2003 - 2007</div>
+            </div>
+          </section>
+
+          <section class="card stagger-3">
+            <h2 class="sec-title">Eligibility</h2>
+            <div class="pill">Civil Service Exam - Professional Level Passer<br />Career Service Professional Eligibility</div>
+          </section>
+
+          <section class="card stagger-4">
+            <h2 class="sec-title">Technical Stack</h2>
+            <div class="chips">
+              <span class="chip">PHP</span><span class="chip">C#</span><span class="chip">JavaScript</span>
+              <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">MySQL</span>
+              <span class="chip">SQL Server</span><span class="chip">Bootstrap 5</span><span class="chip">AJAX</span>
+              <span class="chip">jQuery</span><span class="chip">Git</span><span class="chip">GitHub</span>
+              <span class="chip">VS Code</span><span class="chip">XAMPP</span>
+            </div>
+          </section>
+        </aside>
+
+        <main class="right-col">
+          <section class="card hero-card stagger-1">
+            <h2>Hi, I'm <span>Archimedes</span>,<br />IT Officer and Municipal Programmer</h2>
+            <p class="sub">Information Technology professional with over 15 years of experience in government IT services, software engineering, and web application development. Focused on secure, scalable, and user-friendly digital public service solutions.</p>
+            <div class="chips">
+              <span class="chip">Municipal Systems</span>
+              <span class="chip">Reservation Platforms</span>
+              <span class="chip">Receipt Management</span>
+              <span class="chip">Database Integration</span>
+            </div>
+          </section>
+
+          <section class="card stagger-2">
+            <h2 class="sec-title">Experience</h2>
+            <div class="exp-item">
+              <div class="head">
+                <div class="role">Administrative Assistant IV (IT and Programming Functions)</div>
+                <div class="year">2009 - Present</div>
+              </div>
+              <p class="sub">Municipality of Pangil, Laguna</p>
+              <ul>
+                <li>Designs and develops municipal systems using Visual Studio (C#) and MySQL.</li>
+                <li>Provides hardware, software, and network troubleshooting and maintenance.</li>
+                <li>Manages database administration, backups, and security protocols.</li>
+                <li>Conducts IT orientation and user training for municipal employees.</li>
+                <li>Developed municipal website, online reservation system, and online receipt management system.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="card stagger-2">
+            <h2 class="sec-title">Featured Projects</h2>
+            <div class="projects">
+              <article class="project">
+                <h3>Municipality of Pangil Website</h3>
+                <p>Official municipal portal with announcements, office directory, content management, and responsive public pages.</p>
+                <a class="project-link" href="/index.php" target="_blank" rel="noopener noreferrer">Open Website</a>
+              </article>
+              <article class="project">
+                <h3>Panguil River Ecopark Reservation</h3>
+                <p>Web-based booking system for pavilion, dormitory, room, and cottage reservations with approval workflow.</p>
+                <a class="project-link" href="/ecopark_gen/" target="_blank" rel="noopener noreferrer">Open System</a>
+              </article>
+              <article class="project">
+                <h3>Online Receipt Management System</h3>
+                <p>Digital receipt generation, transaction monitoring, searchable records, and printable finance outputs.</p>
+                <a class="project-link" href="/treasury_web/" target="_blank" rel="noopener noreferrer">Open System</a>
+              </article>
+              <article class="project">
+                <h3>Municipal In-House Systems</h3>
+                <p>Waterworks Billing, General Collection, RPTAS, RPT Billing, Business Permit, and Cemetery Information systems.</p>
+                <a class="project-link" href="/treasury_web/" target="_blank" rel="noopener noreferrer">View Module</a>
+              </article>
+            </div>
+          </section>
+
+          <section class="card stagger-3">
+            <h2 class="sec-title">Certifications and Trainings</h2>
+            <div class="cert-list">
+              <div class="pill">TESDA - Computer System Servicing NC II (Certified)</div>
+              <div class="pill">Computer System Servicing, Visual Graphic Design, Print Media, Logo, and UI courses</div>
+              <div class="pill">eLGU Summit - February 4, 2026</div>
+              <div class="pill">Mainstreaming Gender, Public Safety, and Disaster Resilience in Local Governance - August 4-8, 2025</div>
+              <div class="pill">Public Service in the Digital Age: Data Privacy and Cybersecurity - November 25, 2025</div>
+            </div>
+          </section>
+
+          <section class="card stagger-4">
+            <h2 class="sec-title">Key Achievements and Professional Skills</h2>
+            <ul>
+              <li>Integrated multiple systems under a single MySQL database for unified reporting.</li>
+              <li>Enhanced revenue transparency and reduced human error through automation.</li>
+              <li>Recognized for innovation and leadership in local government digital transformation.</li>
+              <li>Strong background in system analysis, database administration, IT support, and user training.</li>
+              <li>Character references are available upon request.</li>
+            </ul>
+          </section>
+        </main>
+      </div>
+    </article>
+    </div>
+  </div>
+</body>
+</html>
