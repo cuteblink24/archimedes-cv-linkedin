@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pangil Main Page - Portfolio Demo</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #1b2a41;
+      --muted: #5c6b80;
+      --line: #d9e2ef;
+      --accent: #007f5f;
+      --accent-soft: #e8f6f1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f7fbff 0%, #eef4fb 100%);
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 20px; }
+    .top {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    .sub { margin: 0; color: var(--muted); }
+    .grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .cta {
+      display: inline-block;
+      margin-top: 14px;
+      text-decoration: none;
+      color: #fff;
+      background: var(--accent);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .note {
+      margin-top: 14px;
+      background: var(--accent-soft);
+      border: 1px solid #bfe7d9;
+      border-radius: 10px;
+      padding: 10px;
+      color: #2f5f53;
+      font-size: 13px;
+    }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="top">
+      <h1>Municipality of Pangil - Main Page</h1>
+      <p class="sub">Portfolio preview page for LinkedIn visitors.</p>
+      <a class="cta" href="./index.html">Back to CV</a>
+      <div class="note">This is a static showcase version hosted on GitHub Pages. Live government systems may use a separate production server.</div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Public Announcements</h3>
+        <p>News highlights, notices, and local updates in a mobile-friendly layout.</p>
+      </article>
+      <article class="card">
+        <h3>Office Directory</h3>
+        <p>Organized access to municipal offices, services, and contact points.</p>
+      </article>
+      <article class="card">
+        <h3>Digital Services</h3>
+        <p>Gateway to reservation, finance, and administrative information systems.</p>
+      </article>
+    </section>
+  </div>
+</body>
+</html>
